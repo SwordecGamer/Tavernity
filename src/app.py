@@ -6,6 +6,8 @@ from PySide6.QtQml import QQmlApplicationEngine
 
 from services.auth_service import AuthService
 from gui.controllers.login_controller import LoginController
+from services.server_store import ServerStore
+from gui.controllers.server_controller import ServerController
 
 class App():
     def __init__(self):
@@ -18,8 +20,12 @@ class App():
         auth_service = AuthService()
         login_controller = LoginController(auth_service)
 
-        self._engine.rootContext().setContextProperty("loginController", login_controller)
+        server_store = ServerStore()
+        server_controller = ServerController(server_store)
 
+        self._engine.rootContext().setContextProperty("loginController", login_controller)
+        self._engine.rootContext().setContextProperty("serverController", server_controller)
+        
         qml_path = Path(__file__).resolve().parent / "gui" / "qml" / "App.qml"
         self._engine.load(str(qml_path))
 

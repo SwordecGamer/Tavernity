@@ -13,6 +13,12 @@ Item {
         Text { text: "Welcome Home!"; font.pixelSize: 26 }
 
         Button {
+            text: "Servers"
+            onClicked: root.host.currentPage = "pages/Servers.qml"
+        }
+
+
+        Button {
             text: "Log out"
             onClicked: root.host.currentPage = "pages/Login.qml"
         }
