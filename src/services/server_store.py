@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import json
-
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import List, Optional
+
+from PySide6.QtCore import QStandardPaths
 
 @dataclass
 class ServerEntry:
@@ -14,13 +15,13 @@ class ServerEntry:
     notes: str = ""
 
 class ServerStore:
-    def __init__(self, file_path: Optional[Path] = None):
-        if file_path is None:
-            base = Path(__file__).resolve().parents[1]
-            file_path = base / "config" / "servers.json"
+    def __init__(self):
+        base_path = Path(QStandardPaths.writableLocation(QStandardPaths.AppDataLocation))
+        
+        self._dir = base_path
+        self._dir.mkdir(parents=True, exist_ok=True)
 
-        self._file_path = file_path
-        self._file_path.parent.mkdir(parents=True, exist_ok=True)
+        self._file_path = self._dir / "servers.json"
 
     @property
     def file_path(self) -> Path:

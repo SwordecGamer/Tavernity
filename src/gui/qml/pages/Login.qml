@@ -36,8 +36,9 @@ Item {
 
     Connections {
         target: loginController
-        function onLoginSuccess(token) {
+        function onLoginSuccess(token, username) {
             root.host.token = token
+            root.host.currentUser = username
             root.host.currentPage = "pages/Home.qml"
         }
     }

@@ -3,6 +3,7 @@ from pathlib import Path
 
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtCore import QCoreApplication
 
 from services.auth_service import AuthService
 from gui.controllers.login_controller import LoginController
@@ -14,6 +15,8 @@ class App():
         self.enigne = None
 
     def run(self):
+        QCoreApplication.setOrganizationName("Tavernity Studio")
+        QCoreApplication.setApplicationName("Tavernity")
         app = QGuiApplication(sys.argv)
         self._engine = QQmlApplicationEngine()
 
@@ -21,6 +24,7 @@ class App():
         login_controller = LoginController(auth_service)
 
         server_store = ServerStore()
+        print("Server data stored at:", server_store.file_path)
         server_controller = ServerController(server_store)
 
         self._engine.rootContext().setContextProperty("loginController", login_controller)

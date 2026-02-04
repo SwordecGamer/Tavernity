@@ -5,7 +5,7 @@ from services.auth_service import AuthService
 class LoginController(QObject):
     busyChanged = Signal()
     errorChanged = Signal()
-    loginSuccess = Signal(str)
+    loginSuccess = Signal(str, str)
 
     def __init__(self, auth_service: AuthService, parent=None):
         super().__init__(parent)
@@ -45,6 +45,6 @@ class LoginController(QObject):
         self.busy = False
 
         if result.success and result.access_token:
-            self.loginSuccess.emit(result.access_token)
+            self.loginSuccess.emit(result.access_token, username)
         else:
             self.error = result.message or "Login failed. Please try again."
