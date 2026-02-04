@@ -52,7 +52,11 @@ ApplicationWindow {
                     anchors.margins: 14
                     spacing: 6
                     Text { text: currentUser; color: "white"; font.pixelSize: 20; font.bold: true }
-                    Text { text: "Navigation"; color: "#cfcfcf"; font.pixelSize: 12 }
+                    ItemDelegate {
+                        text: "My Account"
+                        onClicked: window.navigate("pages/Account.qml")
+                        enabled: window.currentPage !== "pages/Account.qml"
+                    }
                 }
             }
 
