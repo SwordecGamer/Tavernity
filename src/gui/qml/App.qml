@@ -62,13 +62,13 @@ ApplicationWindow {
 
             ItemDelegate {
                 Layout.fillWidth: true
-                text: "Home"
+                text: "Home"; font.pixelSize: 16; font.bold: true
                 onClicked: window.navigate("pages/Home.qml")
                 enabled: window.currentPage !== "pages/Home.qml"
             }
             ItemDelegate {
                 Layout.fillWidth: true
-                text: "Servers"
+                text: "Servers"; font.pixelSize: 16; font.bold: true
                 onClicked: window.navigate("pages/Servers.qml")
                 enabled: window.currentPage !== "pages/Servers.qml"
             }
@@ -77,15 +77,21 @@ ApplicationWindow {
 
             ItemDelegate {
                 Layout.fillWidth: true
-                text: "Account"
-                onClicked: window.navigate("pages/Account.qml")
-                enabled: window.currentPage !== "pages/Account.qml"
+                text: "Settings"; font.pixelSize: 16; font.bold: true
+                onClicked: window.navigate("pages/Settings.qml")
+                enabled: window.currentPage !== "pages/Settings.qml"
             }
             ItemDelegate {
                 Layout.fillWidth: true
-                text: "Settings"
-                onClicked: window.navigate("pages/Settings.qml")
-                enabled: window.currentPage !== "pages/Settings.qml"
+                text: "Logs && Diagnostics"; font.pixelSize: 16; font.bold: true
+                onClicked: window.navigate("pages/Logs&Diagnostics.qml")
+                enabled: window.currentPage !== "pages/Logs&Diagnostics.qml"
+            }
+            ItemDelegate {
+                Layout.fillWidth: true
+                text: "About && Credits"; font.pixelSize: 16; font.bold: true
+                onClicked: window.navigate("pages/About&Credits.qml")
+                enabled: window.currentPage !== "pages/About&Credits.qml"
             }
 
             Rectangle { Layout.fillWidth: true; height: 1; color: "#2b2b2b" }
